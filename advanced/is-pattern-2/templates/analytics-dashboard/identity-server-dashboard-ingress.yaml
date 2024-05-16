@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "is-pattern-2.resource.prefix" . }}-dashboard-ingress
@@ -30,6 +30,7 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           serviceName: {{ template "is-pattern-2.resource.prefix" . }}-analytics-dashboard-service
           servicePort: 9643
