@@ -28,7 +28,7 @@ wso2:
       imageName: "wso2is"
       imageTag: "5.9.0"
       # Number of deployment replicas
-      replicas: 1
+      replicas: 2
       # Minimum number of seconds for which a newly created pod should be ready without any of its containers crashing, for it to be considered available.
       minReadySeconds: 30
       strategy:
@@ -56,12 +56,12 @@ wso2:
           # The minimum amount of memory that should be allocated for a Pod
           memory: "2Gi"
           # The minimum amount of CPU that should be allocated for a Pod
-          cpu: "2000m"
+          cpu: "1000m"
         limits:
           # The maximum amount of memory that should be allocated for a Pod
           memory: "4Gi"
           # The maximum amount of CPU that should be allocated for a Pod
-          cpu: "4000m"
+          cpu: "2000m"
       # Refer to the Kubernetes documentation on updating images (https://kubernetes.io/docs/concepts/containers/images/#updating-images)
       imagePullPolicy: Always
       config:

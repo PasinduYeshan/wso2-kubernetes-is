@@ -32,6 +32,7 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           serviceName: {{ template "fullname" . }}-service
           servicePort: 9443
