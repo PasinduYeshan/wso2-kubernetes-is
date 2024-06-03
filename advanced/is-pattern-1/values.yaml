@@ -124,6 +124,22 @@ wso2:
             name = "wso2carbon.jks"
             password = "wso2carbon"
 
+      # Configure Ingresses
+      ingress:
+        className: ""
+        identity:
+          # Hostname for Identity Server
+          hostname: "identity.wso2.com"
+          # Annotations for the Identity service Ingress
+          annotations:
+            kubernetes.io/ingress.class: "nginx"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            nginx.ingress.kubernetes.io/affinity: "cookie"
+            nginx.ingress.kubernetes.io/session-cookie-name: "route"
+            nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+
+    
+
   # Configurations for the logstash container image and elasticsearch authorization credentials
   # Centralized logging is disabled by default. If it is required to enable centralized logging, please follow the instructions
   # provided in the documentation (https://github.com/wso2/kubernetes-is/tree/master/advanced/helm/is-pattern-1#enabling-centralized-logging)
