@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-{% comment %} apiVersion: v1
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: is-shared-deployment-volume-claim
@@ -44,4 +44,4 @@ spec:
   storageClassName: ""
   selector:
     matchLabels:
-      purpose: is-shared-tenants {% endcomment %}
+      purpose: is-shared-tenants
