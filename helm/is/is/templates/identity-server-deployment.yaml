@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wso2is-deployment
   namespace : {{ .Values.namespace }}
 spec:
-  replicas: 1
+  replicas: 2
   minReadySeconds: 30
   strategy:
     rollingUpdate:
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: wso2is
-        image: docker.wso2.com/wso2is:5.7.0
+        image: docker.io/pasinduyeshan/is5.7u:latest
         livenessProbe:
           exec:
             command:
@@ -62,32 +62,32 @@ spec:
         - containerPort: 9443
           protocol: TCP
         volumeMounts:
-        - name: identity-server-conf
-          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf
+        {% comment %} - name: identity-server-conf
+          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf {% endcomment %}
         - name: identity-server-conf-axis2
           mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/axis2
-        - name: identity-server-conf-datasources
-          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/datasources
-        - name: identity-server-conf-identity
-          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/identity
-        - name: shared-deployment-persistent-disk
+        {% comment %} - name: identity-server-conf-datasources
+          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/datasources {% endcomment %}
+        {% comment %} - name: identity-server-conf-identity
+          mountPath: /home/wso2carbon/wso2-config-volume/repository/conf/identity {% endcomment %}
+        {% comment %} - name: shared-deployment-persistent-disk
           mountPath: /home/wso2carbon/wso2is-5.7.0/repository/deployment
         - name: shared-tenants-persistent-disk
-          mountPath: /home/wso2carbon/wso2is-5.7.0/repository/tenants
+          mountPath: /home/wso2carbon/wso2is-5.7.0/repository/tenants {% endcomment %}
       serviceAccountName: {{ .Values.svcaccount }}
       imagePullSecrets:
       - name: wso2creds
       volumes:
-      - name: identity-server-conf
+      {% comment %} - name: identity-server-conf
         configMap:
-          name: identity-server-conf
+          name: identity-server-conf {% endcomment %}
       - name: identity-server-conf-axis2
         configMap:
           name: identity-server-conf-axis2
-      - name: identity-server-conf-datasources
+      {% comment %} - name: identity-server-conf-datasources
         configMap:
-          name: identity-server-conf-datasources
-      - name: identity-server-conf-identity
+          name: identity-server-conf-datasources {% endcomment %}
+      {% comment %} - name: identity-server-conf-identity
         configMap:
           name: identity-server-conf-identity
       - name: shared-deployment-persistent-disk
@@ -95,4 +95,4 @@ spec:
           claimName: is-shared-deployment-volume-claim
       - name: shared-tenants-persistent-disk
         persistentVolumeClaim:
-          claimName: is-shared-tenants-volume-claim
+          claimName: is-shared-tenants-volume-claim {% endcomment %}

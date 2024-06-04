@@ -1,6 +1,6 @@
-username: "<USERNAME>"
-password: "<PASSWORD>"
-email: "<EMAIL>"
+username: "admin"
+password: "admin"
+email: "pasinduyeshann@gmail.com"
 
 namespace: "wso2"
 svcaccount: "wso2svc-account"

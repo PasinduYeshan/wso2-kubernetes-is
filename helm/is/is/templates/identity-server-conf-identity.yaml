@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
+{% comment %} apiVersion: v1
 kind: ConfigMap
 metadata:
   name: identity-server-conf-identity
@@ -27,4 +27,4 @@ data:
     {{- range $file.Lines $path }}
     {{ . }}
     {{- end }}
-  {{- end }}
+  {{- end }} {% endcomment %}
