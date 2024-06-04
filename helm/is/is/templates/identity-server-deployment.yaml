@@ -28,7 +28,7 @@ spec:
   template:
     metadata:
       labels:
-        deployment: wso2is
+        deployment: wso2is-deployment
     spec:
       containers:
       - name: wso2is
